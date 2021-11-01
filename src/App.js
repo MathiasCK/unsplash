@@ -117,9 +117,9 @@ const App = () => {
       <div className='image-container-header'>
         <h2 className='output'>Results for {search.searchTerm}</h2>
         <div className='buttons'>
-          <button id='prev-btn'>&#8249 Previous</button>
+          <button>Previous</button>
           <p className='page'>{search.page}</p>
-          <button id='next-btn'> Next &#8250</button>
+          <button>Next</button>
         </div>
       </div>
       <main className='image-container'>
@@ -147,6 +147,7 @@ const App = () => {
                   <footer className='footer'>
                     {image.tags.map(tag => (
                       <button
+                        className='tag'
                         key={tag.title}
                         onClick={() => {
                           updateSearch({
@@ -155,7 +156,6 @@ const App = () => {
                           });
                           fetchImages();
                         }}
-                        className='tag'
                       >
                         {tag.title}
                       </button>
