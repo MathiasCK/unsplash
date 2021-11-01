@@ -166,7 +166,7 @@ const App = () => {
             </section>
           ))
         ) : (
-          <p>Empty</p>
+          <p>No results for '{search.searchTerm}'</p>
         )}
       </main>
     </>
