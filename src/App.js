@@ -1,49 +1,32 @@
 import React, { useEffect, useState } from 'react';
-import { useSearchCart, useSearchHandler } from './context';
+import { useHanldeSubmit } from './context';
 import './main.css';
 
 const App = () => {
-  const search = useSearchCart();
-  const [imageInput, setImageInput] = useState('');
-  const [imagesToDisplay, setImagesToDisplay] = useState([]);
-  const updateSearch = useSearchHandler();
+  const submit = useHanldeSubmit();
+  const [searchValue, setSearchValue] = useState('');
+  const [images, setImages] = useState([]);
+  const [pageValue, setPageValue] = useState(1);
 
   useEffect(() => {
-    fetchImages();
+    updateSearch('random', 1);
+    setPageValue(1);
+    setSearchValue('random');
   }, []);
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    updateSearch({ searchTerm: imageInput, page: '1' });
-    fetchImages();
+  const updateSearch = async (value, page) => {
+    setImages(await submit(value, page));
   };
-
-  const fetchImages = async () => {
-    try {
-      const response = await fetch(
-        `https://api.unsplash.com/search/photos?query=${search.searchTerm}&page=${search.page}&per_page=12&client_id=gK52De2Tm_dL5o1IXKa9FROBAJ-LIYqR41xBdlg3X2k`,
-      );
-      const data = await response.json();
-      renderImages(data.results);
-    } catch (error) {
-      throw new Error(error);
-    }
-  };
-
-  const spliceIntoChunks = arr => {
-    const res = [];
-    while (arr.length > 0) {
-      const chunk = arr.splice(0, 3);
-      res.push(chunk);
-    }
-    return res;
-  };
-
-  const renderImages = arr => setImagesToDisplay(spliceIntoChunks(arr));
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form
+        onSubmit={e => {
+          e.preventDefault();
+          updateSearch(searchValue);
+          setPageValue(1);
+        }}
+      >
         <div className='search'>
           <div className='info'>
             <h4>Unsplash 2.0</h4>
@@ -55,7 +38,7 @@ const App = () => {
           </div>
           <div className='form-control'>
             <input
-              onInput={e => setImageInput(e.target.value)}
+              onInput={e => setSearchValue(e.target.value)}
               placeholder='Search for images'
               type='text'
               className='search-field'
@@ -76,36 +59,40 @@ const App = () => {
           <div className='trending'>
             <p>Trending: </p>
             <button
-              onClick={() => {
-                updateSearch({ searchTerm: 'nature', page: '1' });
-                fetchImages();
+              onClick={e => {
+                updateSearch(e.target.innerHTML.toLowerCase(), 1);
+                setPageValue(1);
+                setSearchValue(e.target.innerHTML.toLowerCase());
               }}
               className='trendy'
             >
               Nature
             </button>
             <button
-              onClick={() => {
-                updateSearch({ searchTerm: 'adventure', page: '1' });
-                fetchImages();
+              onClick={e => {
+                updateSearch(e.target.innerHTML.toLowerCase(), 1);
+                setPageValue(1);
+                setSearchValue(e.target.innerHTML.toLowerCase());
               }}
               className='trendy'
             >
               Adventure
             </button>
             <button
-              onClick={() => {
-                updateSearch({ searchTerm: 'cars', page: '1' });
-                fetchImages();
+              onClick={e => {
+                updateSearch(e.target.innerHTML.toLowerCase(), 1);
+                setPageValue(1);
+                setSearchValue(e.target.innerHTML.toLowerCase());
               }}
               className='trendy'
             >
               Cars
             </button>
             <button
-              onClick={() => {
-                updateSearch({ searchTerm: 'sunset', page: '1' });
-                fetchImages();
+              onClick={e => {
+                updateSearch(e.target.innerHTML.toLowerCase(), 1);
+                setPageValue(1);
+                setSearchValue(e.target.innerHTML.toLowerCase());
               }}
               className='trendy'
             >
@@ -115,16 +102,33 @@ const App = () => {
         </div>
       </form>
       <div className='image-container-header'>
-        <h2 className='output'>Results for {search.searchTerm}</h2>
+        <h2 className='output'>Results for {searchValue}</h2>
         <div className='buttons'>
-          <button>Previous</button>
-          <p className='page'>{search.page}</p>
-          <button>Next</button>
+          <button
+            onClick={() => {
+              if (pageValue === 1) {
+                return;
+              }
+              setPageValue(pageValue - 1);
+              updateSearch(searchValue, pageValue);
+            }}
+          >
+            Previous
+          </button>
+          <p className='page'>{pageValue}</p>
+          <button
+            onClick={() => {
+              setPageValue(pageValue + 1);
+              updateSearch(searchValue, pageValue);
+            }}
+          >
+            Next
+          </button>
         </div>
       </div>
       <main className='image-container'>
-        {imagesToDisplay.length ? (
-          imagesToDisplay.map(imageObj => (
+        {images.length &&
+          images.map(imageObj => (
             <section key={imageObj.id} className='image-column'>
               {imageObj.map(image => (
                 <div key={image.urls.small}>
@@ -134,7 +138,10 @@ const App = () => {
                       <div className='image-overlay'>
                         <div className='user'>
                           <div className='profile-img'>
-                            <img src={image.user.profile_image.small} />
+                            <img
+                              alt={image.user.profile_image.small}
+                              src={image.user.profile_image.small}
+                            />
                           </div>
                           <p>
                             Creator: {image.user.first_name}{' '}
@@ -150,11 +157,9 @@ const App = () => {
                         className='tag'
                         key={tag.title}
                         onClick={() => {
-                          updateSearch({
-                            searchTerm: tag.title,
-                            page: '1',
-                          });
-                          fetchImages();
+                          updateSearch(tag.title, 1);
+                          setPageValue(1);
+                          setSearchValue(tag.title);
                         }}
                       >
                         {tag.title}
@@ -164,10 +169,7 @@ const App = () => {
                 </div>
               ))}
             </section>
-          ))
-        ) : (
-          <p>No results for '{search.searchTerm}'</p>
-        )}
+          ))}
       </main>
     </>
   );

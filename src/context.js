@@ -1,22 +1,38 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext } from 'react';
 
 const SearchContext = createContext({});
 
 export const SearchProvider = ({ children }) => {
-  const [search, setSearch] = useState({
-    searchTerm: 'random',
-    page: '1',
-  });
+  const handleSubmit = (searchTerm, page) => {
+    return fetchImages(searchTerm, page);
+  };
 
-  const searchHandler = obj => {
-    setSearch(obj);
+  const fetchImages = async (searchTerm, page) => {
+    try {
+      const response = await fetch(
+        `https://api.unsplash.com/search/photos?query=${searchTerm}&page=${page}&per_page=12&client_id=gK52De2Tm_dL5o1IXKa9FROBAJ-LIYqR41xBdlg3X2k`,
+      );
+      const data = await response.json();
+      const splicedData = spliceIntoChunks(data.results);
+      return splicedData;
+    } catch (error) {
+      throw new Error(error);
+    }
+  };
+
+  const spliceIntoChunks = arr => {
+    const res = [];
+    while (arr.length > 0) {
+      const chunk = arr.splice(0, 3);
+      res.push(chunk);
+    }
+    return res;
   };
 
   return (
     <SearchContext.Provider
       value={{
-        search,
-        searchHandler,
+        handleSubmit,
       }}
     >
       {children}
@@ -26,6 +42,4 @@ export const SearchProvider = ({ children }) => {
 
 export const useSearchContext = () => useContext(SearchContext);
 
-export const useSearchCart = () => useSearchContext().search;
-
-export const useSearchHandler = () => useSearchContext().searchHandler;
+export const useHanldeSubmit = () => useSearchContext().handleSubmit;
