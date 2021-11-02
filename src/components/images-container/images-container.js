@@ -4,7 +4,6 @@ export const StyledImagesContainer = styled.main`
   display: flex;
   flex-wrap: wrap;
   padding: 0 4px;
-
   .image-column {
     flex: 100%;
     max-width: 100%;
