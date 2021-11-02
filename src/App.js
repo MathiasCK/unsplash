@@ -7,7 +7,7 @@ import {
   useUpdatePageValue,
   useUpdateSearchValue,
 } from './context';
-import './main.css';
+import './styles/main.css';
 
 const App = () => {
   const updateSearch = useHanldeSubmit();

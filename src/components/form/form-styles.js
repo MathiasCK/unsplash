@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { mediaQuery } from '../../media';
 
 export const StyledForm = styled.form`
   display: flex;
@@ -13,13 +14,13 @@ export const StyledForm = styled.form`
 `;
 
 export const StyledSearch = styled.div`
-  @media (min-width: 450px) {
+  @media (min-width: ${mediaQuery.mobile}) {
     width: 90%;
   }
-  @media (min-width: 768px) {
+  @media (min-width: ${mediaQuery.tablet}) {
     width: 70%;
   }
-  @media (min-width: 1024px) {
+  @media (min-width: ${mediaQuery.desktop}) {
     width: 50%;
   }
   width: 100%;
@@ -32,10 +33,10 @@ export const StyledInfo = styled.div`
   @media (min-width: 450px) {
     width: 80%;
   }
-  @media (min-width: 768px) {
+  @media (min-width: ${mediaQuery.tablet}) {
     width: 60%;
   }
-  @media (min-width: 1024px) {
+  @media (min-width: ${mediaQuery.desktop}) {
     width: 50%;
   }
   h4 {

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { mediaQuery } from '../../media';
 
 export const StyledImagesContainer = styled.main`
   display: flex;
@@ -12,11 +13,11 @@ export const StyledImagesContainer = styled.main`
       flex: 50%;
       max-width: 50%;
     }
-    @media (min-width: 768px) {
+    @media (min-width: ${mediaQuery.tablet}) {
       flex: 33%;
       max-width: 33%;
     }
-    @media (min-width: 1024px) {
+    @media (min-width: ${mediaQuery.desktop}) {
       flex: 25%;
       max-width: 25%;
     }
