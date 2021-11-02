@@ -1,11 +1,22 @@
-import { createContext, useContext } from 'react';
+import { createContext, useContext, useState } from 'react';
 
 const SearchContext = createContext({});
 
 export const SearchProvider = ({ children }) => {
-  const handleSubmit = (searchTerm, page) => {
-    return fetchImages(searchTerm, page);
+  const [images, setImages] = useState([]);
+  const [searchValue, setSearchValue] = useState('');
+  const [pageValue, setPageValue] = useState(1);
+
+  const updateSearchValue = value => {
+    setSearchValue(value);
   };
+
+  const updatePageValue = value => {
+    setPageValue(value);
+  };
+
+  const handleSubmit = async (searchTerm, page) =>
+    await fetchImages(searchTerm, page);
 
   const fetchImages = async (searchTerm, page) => {
     try {
@@ -14,6 +25,7 @@ export const SearchProvider = ({ children }) => {
       );
       const data = await response.json();
       const splicedData = spliceIntoChunks(data.results);
+      setImages(splicedData);
       return splicedData;
     } catch (error) {
       throw new Error(error);
@@ -33,6 +45,11 @@ export const SearchProvider = ({ children }) => {
     <SearchContext.Provider
       value={{
         handleSubmit,
+        updateSearchValue,
+        searchValue,
+        updatePageValue,
+        pageValue,
+        images,
       }}
     >
       {children}
@@ -43,3 +60,13 @@ export const SearchProvider = ({ children }) => {
 export const useSearchContext = () => useContext(SearchContext);
 
 export const useHanldeSubmit = () => useSearchContext().handleSubmit;
+
+export const useUpdateSearchValue = () => useSearchContext().updateSearchValue;
+
+export const useSearchValue = () => useSearchContext().searchValue;
+
+export const useUpdatePageValue = () => useSearchContext().updatePageValue;
+
+export const usePageValue = () => useSearchContext().pageValue;
+
+export const useImages = () => useSearchContext().images;
