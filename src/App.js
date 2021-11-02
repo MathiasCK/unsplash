@@ -1,34 +1,22 @@
-import React, { useEffect } from 'react';
-import Form from './components/Form/Form';
-import Header from './components/Header/Header';
-import Images from './components/Images-container/Images-container';
-import {
-  useHanldeSubmit,
-  useUpdatePageValue,
-  useUpdateSearchValue,
-} from './context';
+import React from 'react';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+
 import './styles/main.css';
+import Homepage from './components/Homepage/Homepage';
+import Imagedetails from './components/Details/Imagedetails';
 
 const App = () => {
-  const updateSearch = useHanldeSubmit();
-  const setSearchValue = useUpdateSearchValue();
-  const setPageValue = useUpdatePageValue();
-
-  const searchValue = localStorage.getItem('searchValue') || 'random';
-  const pageValue = localStorage.getItem('page') || 'random';
-
-  useEffect(() => {
-    updateSearch(searchValue, pageValue);
-    setPageValue(pageValue);
-    setSearchValue(searchValue);
-  }, []);
-
   return (
-    <>
-      <Form />
-      <Header />
-      <Images />
-    </>
+    <BrowserRouter>
+      <Switch>
+        <Route exact path='/'>
+          <Homepage />
+        </Route>
+        <Route exact path='/image/:imageId'>
+          <Imagedetails />
+        </Route>
+      </Switch>
+    </BrowserRouter>
   );
 };
 

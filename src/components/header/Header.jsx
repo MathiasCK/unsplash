@@ -6,6 +6,7 @@ import {
   useSearchValue,
   useUpdatePageValue,
 } from '../../context';
+
 import { StyledHeader } from './header-styles';
 
 const Header = () => {

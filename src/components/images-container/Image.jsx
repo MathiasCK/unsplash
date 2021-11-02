@@ -1,10 +1,11 @@
 import React from 'react';
 import { StyledImageCard, StyledImageFooter } from './images-container-styles';
+import { Link } from 'react-router-dom';
 import Tag from './Tag';
 
 const Image = ({ image }) => {
   return (
-    <>
+    <Link to={`/image/${image.id}`}>
       <StyledImageCard>
         <header className='image'>
           <img src={image.urls.small} alt='Avatar' />
@@ -28,7 +29,7 @@ const Image = ({ image }) => {
           <Tag key={tag.title} tag={tag} />
         ))}
       </StyledImageFooter>
-    </>
+    </Link>
   );
 };
 
