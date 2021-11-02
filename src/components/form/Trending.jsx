@@ -5,6 +5,7 @@ import {
   useUpdatePageValue,
   useUpdateSearchValue,
 } from '../../context';
+import { StyledTrends } from './form-styles';
 
 const data = [
   {
@@ -30,7 +31,7 @@ const Trending = () => {
   const setSearchValue = useUpdateSearchValue();
   const setPageValue = useUpdatePageValue();
   return (
-    <div className='trending'>
+    <StyledTrends>
       <p>Trending: </p>
       {data.map(trend => (
         <button
@@ -45,7 +46,7 @@ const Trending = () => {
           {trend.name}
         </button>
       ))}
-    </div>
+    </StyledTrends>
   );
 };
 

@@ -1,12 +1,9 @@
 import React, { useEffect } from 'react';
-import Form from './components/form/Form';
-import Header from './components/header/Header';
-import Images from './components/images-container/Images-container';
+import Form from './components/Form/Form';
+import Header from './components/Header/Header';
+import Images from './components/Images-container/Images-container';
 import {
   useHanldeSubmit,
-  useImages,
-  usePageValue,
-  useSearchValue,
   useUpdatePageValue,
   useUpdateSearchValue,
 } from './context';
@@ -14,11 +11,8 @@ import './main.css';
 
 const App = () => {
   const updateSearch = useHanldeSubmit();
-  const searchValue = useSearchValue();
   const setSearchValue = useUpdateSearchValue();
-  const pageValue = usePageValue();
   const setPageValue = useUpdatePageValue();
-  const images = useImages();
 
   useEffect(() => {
     updateSearch('random', 1);

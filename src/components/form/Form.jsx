@@ -4,17 +4,16 @@ import {
   useHanldeSubmit,
   useSearchValue,
   useUpdatePageValue,
-  useUpdateSearchValue,
 } from '../../context';
+import { StyledForm } from './form-styles';
 import Search from './Search';
 
 const Form = () => {
   const updateSearch = useHanldeSubmit();
   const searchValue = useSearchValue();
-  const setSearchValue = useUpdateSearchValue();
   const setPageValue = useUpdatePageValue();
   return (
-    <form
+    <StyledForm
       onSubmit={e => {
         e.preventDefault();
         updateSearch(searchValue, 1);
@@ -22,7 +21,7 @@ const Form = () => {
       }}
     >
       <Search />
-    </form>
+    </StyledForm>
   );
 };
 
