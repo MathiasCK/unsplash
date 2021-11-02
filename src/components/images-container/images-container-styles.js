@@ -86,6 +86,7 @@ export const StyledImageFooter = styled.footer`
   display: flex;
   padding: 1vh 0;
   .tag {
+    height: 70%;
     border: none;
     margin-right: 0.5rem;
     font-size: 2vh;

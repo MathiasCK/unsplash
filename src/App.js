@@ -14,10 +14,13 @@ const App = () => {
   const setSearchValue = useUpdateSearchValue();
   const setPageValue = useUpdatePageValue();
 
+  const searchValue = localStorage.getItem('searchValue') || 'random';
+  const pageValue = localStorage.getItem('page') || 'random';
+
   useEffect(() => {
-    updateSearch('random', 1);
-    setPageValue(1);
-    setSearchValue('random');
+    updateSearch(searchValue, pageValue);
+    setPageValue(pageValue);
+    setSearchValue(searchValue);
   }, []);
 
   return (

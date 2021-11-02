@@ -16,8 +16,15 @@ export const SearchProvider = ({ children }) => {
     setPageValue(value);
   };
 
-  const handleSubmit = async (searchTerm, page) =>
+  const updateLocalStorage = (search, page) => {
+    localStorage.setItem('searchValue', search);
+    localStorage.setItem('page', page);
+  };
+
+  const handleSubmit = async (searchTerm, page) => {
     await fetchImages(searchTerm, page);
+    updateLocalStorage(searchTerm, page);
+  };
 
   const fetchImages = async (searchTerm, page) => {
     try {
@@ -46,6 +53,7 @@ export const SearchProvider = ({ children }) => {
     <SearchContext.Provider
       value={{
         handleSubmit,
+        updateLocalStorage,
         updateSearchValue,
         searchValue,
         updatePageValue,
@@ -71,3 +79,6 @@ export const useUpdatePageValue = () => useSearchContext().updatePageValue;
 export const usePageValue = () => useSearchContext().pageValue;
 
 export const useImages = () => useSearchContext().images;
+
+export const useUpdateLocalStorage = () =>
+  useSearchContext().updateLocalStorage;
