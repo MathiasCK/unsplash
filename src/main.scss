@@ -146,7 +146,7 @@ form {
 .image-card {
   .image {
     position: relative;
-    height: 90%;
+    height: 95%;
     width: 100%;
 
     img {
@@ -200,13 +200,13 @@ form {
 }
 
 .footer {
-  height: 10%;
+  height: 5%;
   width: 100%;
   display: flex;
   padding: 1vh 0;
   .tag {
     border: none;
-    margin: 0 0.5rem;
+    margin-right: 0.5rem;
     font-size: 2vh;
     text-align: center;
     background: rgba(166, 166, 166, 0.5);
