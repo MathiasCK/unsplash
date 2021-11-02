@@ -6,6 +6,7 @@ import {
   useSearchValue,
   useUpdatePageValue,
 } from '../../context';
+import { StyledHeader } from './header-styles';
 
 const Header = () => {
   const updateSearch = useHanldeSubmit();
@@ -14,7 +15,7 @@ const Header = () => {
   const setPageValue = useUpdatePageValue();
 
   return (
-    <div className='image-container-header'>
+    <StyledHeader>
       <h2 className='output'>Results for {searchValue}</h2>
       <div className='buttons'>
         <button
@@ -38,7 +39,7 @@ const Header = () => {
           Next
         </button>
       </div>
-    </div>
+    </StyledHeader>
   );
 };
 
