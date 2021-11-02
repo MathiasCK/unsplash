@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyledImageCard, StyledImageFooter } from './images-container';
+import { StyledImageCard, StyledImageFooter } from './images-container-styles';
 import Tag from './Tag';
 
 const Image = ({ image }) => {

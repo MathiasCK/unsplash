@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import mediaQuery from '../../media';
 
 export const StyledForm = styled.form`
   display: flex;

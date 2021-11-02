@@ -2,6 +2,9 @@ import { createContext, useContext, useState } from 'react';
 
 const SearchContext = createContext({});
 
+const token = process.env.UNSPLASH_TOKEN;
+console.log(token);
+
 export const SearchProvider = ({ children }) => {
   const [images, setImages] = useState([]);
   const [searchValue, setSearchValue] = useState('');

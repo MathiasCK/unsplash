@@ -2,7 +2,7 @@ import React from 'react';
 
 import { useImages } from '../../context';
 import Image from './Image';
-import { StyledImagesContainer } from './images-container';
+import { StyledImagesContainer } from './images-container-styles';
 
 const Images = () => {
   const images = useImages();
