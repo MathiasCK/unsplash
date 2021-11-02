@@ -1,10 +1,11 @@
 import React from 'react';
+import { StyledImageCard, StyledImageFooter } from './images-container';
 import Tag from './Tag';
 
 const Image = ({ image }) => {
   return (
     <>
-      <article className='image-card'>
+      <StyledImageCard>
         <header className='image'>
           <img src={image.urls.small} alt='Avatar' />
           <div className='image-overlay'>
@@ -21,12 +22,12 @@ const Image = ({ image }) => {
             </div>
           </div>
         </header>
-      </article>
-      <footer className='footer'>
+      </StyledImageCard>
+      <StyledImageFooter>
         {image.tags.map(tag => (
           <Tag key={tag.title} tag={tag} />
         ))}
-      </footer>
+      </StyledImageFooter>
     </>
   );
 };
