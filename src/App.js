@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import Form from './components/form/Form';
+import Header from './components/header/Header';
 import {
   useHanldeSubmit,
   useImages,
@@ -27,31 +28,7 @@ const App = () => {
   return (
     <>
       <Form />
-      <div className='image-container-header'>
-        <h2 className='output'>Results for {searchValue}</h2>
-        <div className='buttons'>
-          <button
-            onClick={() => {
-              if (pageValue === 1) {
-                return;
-              }
-              setPageValue(pageValue - 1);
-              updateSearch(searchValue, pageValue);
-            }}
-          >
-            Previous
-          </button>
-          <p className='page'>{pageValue}</p>
-          <button
-            onClick={() => {
-              setPageValue(pageValue + 1);
-              updateSearch(searchValue, pageValue);
-            }}
-          >
-            Next
-          </button>
-        </div>
-      </div>
+      <Header />
       <main className='image-container'>
         {images.length &&
           images.map(imageObj => (
