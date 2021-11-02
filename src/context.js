@@ -1,9 +1,7 @@
 import { createContext, useContext, useState } from 'react';
+import { token } from './token';
 
 const SearchContext = createContext({});
-
-const token = process.env.UNSPLASH_TOKEN;
-console.log(token);
 
 export const SearchProvider = ({ children }) => {
   const [images, setImages] = useState([]);
@@ -24,7 +22,7 @@ export const SearchProvider = ({ children }) => {
   const fetchImages = async (searchTerm, page) => {
     try {
       const response = await fetch(
-        `https://api.unsplash.com/search/photos?query=${searchTerm}&page=${page}&per_page=12&client_id=gK52De2Tm_dL5o1IXKa9FROBAJ-LIYqR41xBdlg3X2k`,
+        `https://api.unsplash.com/search/photos?query=${searchTerm}&page=${page}&per_page=12&client_id=${token}`,
       );
       const data = await response.json();
       const splicedData = spliceIntoChunks(data.results);
