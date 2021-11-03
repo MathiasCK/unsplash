@@ -36,8 +36,36 @@ const Imagedetails = () => {
         <p>Loading...</p>
       ) : (
         <StyledImageDetails>
-          <Link to='/'>Back to home</Link>
-          <img src={data.urls.regular} alt={data.id} />
+          <div className='header'>
+            <div className='user'>
+              <div className='user-image'>
+                <img
+                  src={data.user.profile_image.small}
+                  alt={data.alt_description}
+                />
+              </div>
+              <div className='user-info'>
+                <p className='name'>
+                  {data.user.first_name}, {data.user.last_name}
+                </p>
+                <Link
+                  to={`https://www.instagram.com/${data.user.instagram_username}`}
+                >
+                  @{data.user.instagram_username}
+                </Link>
+              </div>
+            </div>
+            <div className='actions'>
+              <Link className='link' to='/'>
+                Back to images
+              </Link>
+              <a className='button'>Download</a>
+            </div>
+          </div>
+          <div className='image'>
+            <img src={data.urls.regular} alt={data.id} />
+          </div>
+          <footer className='footer'>footer</footer>
         </StyledImageDetails>
       )}
     </>
