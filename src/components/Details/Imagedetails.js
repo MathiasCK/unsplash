@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 import { token } from '../../token';
+import Spinner from '../Spinner';
 import { StyledImageDetails } from './image-details';
 
 const getImageDetails = async id => {
@@ -28,12 +29,10 @@ const Imagedetails = () => {
     getImageData();
   }, []);
 
-  console.log(data);
-
   return (
     <>
       {Object.keys(data).length === 0 ? (
-        <p>Loading...</p>
+        <Spinner />
       ) : (
         <StyledImageDetails>
           <div className='header'>

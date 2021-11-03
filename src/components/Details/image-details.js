@@ -64,9 +64,11 @@ export const StyledImageDetails = styled.article`
     width: 100%;
     height: 90vh;
     img {
+      cursor: zoom-in;
       width: 100%;
       height: 100%;
       object-fit: contain;
+      /* box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12); */
     }
   }
   .footer {
