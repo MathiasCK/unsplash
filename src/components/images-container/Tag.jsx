@@ -5,14 +5,14 @@ import {
   useUpdatePageValue,
   useUpdateSearchValue,
 } from '../../context';
+import { StyledTag } from './images-container-styles';
 
 const Tag = ({ tag }) => {
   const updateSearch = useHanldeSubmit();
   const setSearchValue = useUpdateSearchValue();
   const setPageValue = useUpdatePageValue();
   return (
-    <button
-      className='tag'
+    <StyledTag
       key={tag.title}
       onClick={() => {
         updateSearch(tag.title, 1);
@@ -21,7 +21,7 @@ const Tag = ({ tag }) => {
       }}
     >
       {tag.title}
-    </button>
+    </StyledTag>
   );
 };
 

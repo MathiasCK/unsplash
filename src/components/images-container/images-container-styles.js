@@ -85,19 +85,20 @@ export const StyledImageFooter = styled.footer`
   width: 100%;
   display: flex;
   padding: 1vh 0;
-  .tag {
-    border: none;
-    margin-right: 0.5rem;
-    font-size: 2vh;
-    text-align: center;
-    background: rgba(166, 166, 166, 0.5);
-    color: rgba(0, 0, 0, 0.8);
-    text-transform: capitalize;
-    padding: 0.25rem;
-    transition: 0.3s;
-    cursor: pointer;
-    &:hover {
-      background: rgba(166, 166, 166, 0.3);
-    }
+`;
+
+export const StyledTag = styled.button`
+  border: none;
+  margin-right: 0.5rem;
+  font-size: 2vh;
+  text-align: center;
+  background: rgba(166, 166, 166, 0.5);
+  color: rgba(0, 0, 0, 0.8);
+  text-transform: capitalize;
+  padding: 0.25rem;
+  transition: 0.3s;
+  cursor: pointer;
+  &:hover {
+    background: rgba(166, 166, 166, 0.3);
   }
 `;

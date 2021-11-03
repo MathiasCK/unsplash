@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
+import { useHanldeSubmit } from '../../context';
 import Spinner from '../Spinner';
 import { StyledImageDetails } from './image-details';
+import { useHistory } from 'react-router-dom';
+import { FaCamera, FaMapPin } from 'react-icons/fa';
 
 const getImageDetails = async id => {
   try {
@@ -17,6 +20,8 @@ const getImageDetails = async id => {
 };
 
 const Imagedetails = () => {
+  const updateSearch = useHanldeSubmit();
+  const history = useHistory();
   const { imageId } = useParams();
   const [data, setData] = useState({});
 
@@ -70,7 +75,35 @@ const Imagedetails = () => {
           <div className='image'>
             <img src={data.urls.regular} alt={data.id} />
           </div>
-          <footer className='footer'>footer</footer>
+          <footer className='footer'>
+            <div className='footer__statstics'>
+              <p>Views: {data.views}</p>
+              <p>Downloads: {data.downloads}</p>
+            </div>
+            <br />
+            <div className='footer__info'>
+              <FaCamera />
+              <p>Camera: {data.exif.name || 'Unknown'}</p>
+              <FaMapPin />
+              <p>Location: {data.location.title || 'Unknown'}</p>
+            </div>
+            <br />
+            <div className='footer__tags'>
+              Tags
+              {data.tags.map(tag => (
+                <button
+                  key={tag.title}
+                  onClick={async e => {
+                    console.log(e);
+                    await updateSearch(e.target.innerHTML, 1);
+                    history.push('/');
+                  }}
+                >
+                  {tag.title}
+                </button>
+              ))}
+            </div>
+          </footer>
         </StyledImageDetails>
       )}
     </>

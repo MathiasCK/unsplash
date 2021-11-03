@@ -3,12 +3,12 @@ import styled from 'styled-components';
 export const StyledImageDetails = styled.article`
   display: flex;
   flex-direction: column;
-
+  padding: 1rem;
   .header {
     display: flex;
     justify-content: space-between;
     min-height: 5vh;
-    padding: 2rem;
+    padding: 1rem 0;
     .user {
       display: flex;
       align-items: center;
