@@ -2,7 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 import Spinner from '../Spinner';
-import { StyledImageDetails } from './image-details-styles';
+import {
+  StyledActions,
+  StyledFooter,
+  StyledHeader,
+  StyledImage,
+  StyledImageDetails,
+  StyledUser,
+} from './image-details-styles';
 import { FaCamera, FaMapPin } from 'react-icons/fa';
 import DetailTag from './DetailTag';
 
@@ -36,16 +43,16 @@ const Imagedetails = () => {
         <Spinner />
       ) : (
         <StyledImageDetails>
-          <div className='header'>
-            <div className='user'>
-              <div className='user-image'>
+          <StyledHeader>
+            <StyledUser>
+              <div className='user__image'>
                 <img
                   src={data.user.profile_image.small}
                   alt={data.alt_description}
                 />
               </div>
-              <div className='user-info'>
-                <p className='name'>
+              <div className='user__info'>
+                <p className='user__info--name'>
                   {data.user.first_name}, {data.user.last_name}
                 </p>
                 <Link
@@ -54,25 +61,25 @@ const Imagedetails = () => {
                   @{data.user.instagram_username}
                 </Link>
               </div>
-            </div>
-            <div className='actions'>
-              <Link className='link' to='/'>
+            </StyledUser>
+            <StyledActions>
+              <Link className='actions__link' to='/'>
                 Back to images
               </Link>
               <a
                 href={data.urls.regular}
                 terget='_blank'
                 download
-                className='button'
+                className='actions__button'
               >
                 Download
               </a>
-            </div>
-          </div>
-          <div className='image'>
+            </StyledActions>
+          </StyledHeader>
+          <StyledImage>
             <img src={data.urls.regular} alt={data.id} />
-          </div>
-          <footer className='footer'>
+          </StyledImage>
+          <StyledFooter>
             <div className='footer__statstics'>
               <div className='footer-statistics--statistic'>
                 <h1>Views: </h1>
@@ -83,7 +90,7 @@ const Imagedetails = () => {
                 <p>{data.downloads}</p>
               </div>
             </div>
-            <br />
+
             <div className='footer__info'>
               <div className='footer__info--info'>
                 <FaCamera />
@@ -94,13 +101,14 @@ const Imagedetails = () => {
                 <p>{data.location.title || 'Unknown'}</p>
               </div>
             </div>
+
             <h1>Related Tags</h1>
             <div className='footer__tags'>
               {data.tags.map(tag => (
                 <DetailTag key={tag.title} tag={tag} />
               ))}
             </div>
-          </footer>
+          </StyledFooter>
         </StyledImageDetails>
       )}
     </>
