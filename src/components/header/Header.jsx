@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import {
   useHanldeSubmit,
@@ -15,9 +15,15 @@ const Header = () => {
   const pageValue = usePageValue();
   const setPageValue = useUpdatePageValue();
 
+  const [searchValueToDisplay, setSearchValueToDisplay] = useState('');
+
+  useEffect(() => {
+    setSearchValueToDisplay(localStorage.getItem('searchValue'));
+  }, [updateSearch]);
+
   return (
     <StyledHeader>
-      <h2 className='output'>Results for {searchValue}</h2>
+      <h2 className='output'>Results for {searchValueToDisplay}</h2>
       <div className='buttons'>
         <button
           onClick={() => {
