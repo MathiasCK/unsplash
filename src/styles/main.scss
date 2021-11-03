@@ -8,6 +8,12 @@ $mobile: 450px;
 $tablet: 768px;
 $desktop: 1024px;
 
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 * {
   margin: 0;
   padding: 0;

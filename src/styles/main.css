@@ -1,9 +1,20 @@
 @import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Roboto:wght@100;300&display=swap");
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 * {
   margin: 0;
   padding: 0;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+}
+
+button,
+a {
+  text-decoration: none !important;
 }
 /*# sourceMappingURL=main.css.map */

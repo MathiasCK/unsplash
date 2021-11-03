@@ -1,5 +1,4 @@
 import { createContext, useContext, useState } from 'react';
-import { token } from './token';
 
 const SearchContext = createContext({});
 
@@ -29,7 +28,7 @@ export const SearchProvider = ({ children }) => {
   const fetchImages = async (searchTerm, page) => {
     try {
       const response = await fetch(
-        `https://api.unsplash.com/search/photos?query=${searchTerm}&page=${page}&per_page=12&client_id=${token}`,
+        `https://api.unsplash.com/search/photos?query=${searchTerm}&page=${page}&per_page=12&client_id=${process.env.REACT_APP_UNSPLASH_TOKEN}`,
       );
       const data = await response.json();
       const splicedData = spliceIntoChunks(data.results);
@@ -49,23 +48,10 @@ export const SearchProvider = ({ children }) => {
     return res;
   };
 
-  const getImageDetails = async id => {
-    try {
-      const response = await fetch(
-        `https://api.unsplash.com/photos/${id}?&client_id=${token}`,
-      );
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      throw Error(error);
-    }
-  };
-
   return (
     <SearchContext.Provider
       value={{
         handleSubmit,
-        getImageDetails,
         updateLocalStorage,
         updateSearchValue,
         searchValue,
@@ -95,5 +81,3 @@ export const useImages = () => useSearchContext().images;
 
 export const useUpdateLocalStorage = () =>
   useSearchContext().updateLocalStorage;
-
-export const useGetImageDetails = () => useSearchContext().getImageDetails;

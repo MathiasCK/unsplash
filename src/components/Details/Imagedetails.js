@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
-import { token } from '../../token';
 import Spinner from '../Spinner';
 import { StyledImageDetails } from './image-details';
 
 const getImageDetails = async id => {
   try {
     const response = await fetch(
-      `https://api.unsplash.com/photos/${id}?&client_id=${token}`,
+      `https://api.unsplash.com/photos/${id}?&client_id=${process.env.REACT_APP_UNSPLASH_TOKEN}`,
     );
     const data = await response.json();
     return data;
