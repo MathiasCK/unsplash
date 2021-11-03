@@ -21,7 +21,8 @@ const Homepage = () => {
     updateSearch(searchValue, pageValue);
     setPageValue(pageValue);
     setSearchValue(searchValue);
-  });
+    /* eslint-disable */
+  }, []);
 
   return (
     <>
