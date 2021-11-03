@@ -35,7 +35,7 @@ const Imagedetails = () => {
       return setData(image);
     };
     getImageData();
-  }, []);
+  }, [imageId]);
 
   return (
     <>
