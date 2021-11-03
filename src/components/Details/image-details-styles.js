@@ -128,6 +128,7 @@ export const StyledFooter = styled.footer`
       color: rgba(0, 0, 0, 0.5);
       font-weight: lighter;
       transition: all 0.3s ease-in-out;
+      margin: 1vh 0;
       svg {
         margin-right: 0.25rem;
       }
