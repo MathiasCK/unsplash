@@ -57,7 +57,14 @@ const Imagedetails = () => {
               <Link className='link' to='/'>
                 Back to images
               </Link>
-              <a className='button'>Download</a>
+              <a
+                href={data.urls.regular}
+                terget='_blank'
+                download
+                className='button'
+              >
+                Download
+              </a>
             </div>
           </div>
           <div className='image'>
