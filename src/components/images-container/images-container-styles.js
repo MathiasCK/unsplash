@@ -25,6 +25,7 @@ export const StyledImagesContainer = styled.main`
 `;
 
 export const StyledImageCard = styled.article`
+  @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Roboto:wght@100;300&display=swap');
   .image {
     position: relative;
     height: 95%;
@@ -62,7 +63,7 @@ export const StyledImageCard = styled.article`
           font-size: 2vh;
           color: white;
           padding: 0 1vh;
-          font-family: $paragraph;
+          font-family: 'Roboto', sans-serif;
         }
         .profile-img {
           height: 3vh;

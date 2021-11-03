@@ -27,6 +27,7 @@ export const StyledSearch = styled.div`
 `;
 
 export const StyledInfo = styled.div`
+  @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Roboto:wght@100;300&display=swap');
   color: white;
   width: 100%;
   height: 20%;
@@ -40,12 +41,12 @@ export const StyledInfo = styled.div`
     width: 50%;
   }
   h4 {
-    font-family: $header;
+    font-family: 'Abril Fatface', cursive;
     font-size: 4vh;
     padding: 1rem 0;
   }
   p {
-    font-family: $paragraph;
+    font-family: 'Roboto', sans-serif;
     padding-bottom: 1rem;
     font-size: 2vh;
   }
@@ -87,7 +88,7 @@ export const StyledTrends = styled.div`
     color: white;
     background: transparent;
     cursor: pointer;
-    font-family: $paragraph !important;
+    font-family: 'Roboto', sans-serif !important;
     border: none;
     transition: 0.3s;
     &:hover {

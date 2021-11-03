@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 export const StyledHeader = styled.div`
+  @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Roboto:wght@100;300&display=swap');
+
   width: 100%;
   display: flex;
   align-items: center;
@@ -9,7 +11,7 @@ export const StyledHeader = styled.div`
   h2 {
     font-weight: 100;
     font-size: 3vh;
-    font-family: $paragraph;
+    font-family: 'Roboto', sans-serif;
   }
   .buttons {
     margin: 0 1rem;

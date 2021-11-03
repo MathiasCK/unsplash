@@ -19,6 +19,8 @@ export const StyledHeader = styled.header`
 `;
 
 export const StyledUser = styled.div`
+  @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Roboto:wght@100;300&display=swap');
+
   display: flex;
   align-items: center;
   .user__image {
@@ -30,7 +32,7 @@ export const StyledUser = styled.div`
   .user__info {
     font-size: 2vh;
     .user__info--name {
-      font-family: $paragraph;
+      font-family: 'Roboto', sans-serif;
     }
     a {
       text-decoration: none;
@@ -93,9 +95,10 @@ export const StyledImage = styled.div`
 `;
 
 export const StyledFooter = styled.footer`
+  @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Roboto:wght@100;300;500;900&display=swap');
   h1 {
-    font-family: $header;
-    font-weight: lighter;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 900;
     margin: 0.25rem 0;
     font-size: 3vh;
   }
@@ -113,13 +116,13 @@ export const StyledFooter = styled.footer`
         font-size: 2vh !important;
       }
       p {
-        font-family: $paragraph;
+        font-family: 'Roboto', sans-serif;
       }
     }
   }
   .footer__info {
     margin: 2vh 0;
-    font-family: $paragraph;
+    font-family: 'Roboto', sans-serif;
     .footer__info--info {
       display: flex;
       color: rgba(0, 0, 0, 0.5);
