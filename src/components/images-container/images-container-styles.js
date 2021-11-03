@@ -92,6 +92,7 @@ export const StyledTag = styled.button`
   border: none;
   margin-right: 0.5rem;
   font-size: 2vh;
+  height: auto;
   text-align: center;
   background: rgba(166, 166, 166, 0.5);
   color: rgba(0, 0, 0, 0.8);
