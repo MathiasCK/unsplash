@@ -81,7 +81,7 @@ export const StyledImageCard = styled.article`
 `;
 
 export const StyledImageFooter = styled.footer`
-  height: 5%;
+  max-height: 5%;
   width: 100%;
   display: flex;
   padding: 1vh 0;
