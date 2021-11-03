@@ -13,3 +13,8 @@ $desktop: 1024px;
   padding: 0;
   box-sizing: border-box;
 }
+
+button,
+a {
+  text-decoration: none !important;
+}

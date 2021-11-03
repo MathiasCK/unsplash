@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
+import { Link } from 'react-router-dom';
 import { token } from '../../token';
+import { StyledImageDetails } from './image-details';
 
 const getImageDetails = async id => {
   try {
@@ -33,10 +35,10 @@ const Imagedetails = () => {
       {Object.keys(data).length === 0 ? (
         <p>Loading...</p>
       ) : (
-        <div>
-          <h1>{data.id}</h1>
+        <StyledImageDetails>
+          <Link to='/'>Back to home</Link>
           <img src={data.urls.regular} alt={data.id} />
-        </div>
+        </StyledImageDetails>
       )}
     </>
   );
