@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { mediaQuery } from '../../media';
 
 export const StyledImageDetails = styled.article`
   display: flex;
@@ -7,8 +8,12 @@ export const StyledImageDetails = styled.article`
   .header {
     display: flex;
     justify-content: space-between;
+    flex-direction: column;
     min-height: 5vh;
     padding: 1rem 0;
+    @media (min-width: ${mediaQuery.mobile}) {
+      flex-direction: row;
+    }
     .user {
       display: flex;
       align-items: center;
@@ -33,7 +38,18 @@ export const StyledImageDetails = styled.article`
     }
     .actions {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
+      flex-direction: column;
+
+      a {
+        margin: 0.25rem 0 !important;
+      }
+      @media (min-width: ${mediaQuery.mobile}) {
+        flex-direction: row;
+        a {
+          margin: 0 !important;
+        }
+      }
       .button {
         cursor: pointer;
         transition: all 0.3s ease-in-out;
@@ -64,14 +80,62 @@ export const StyledImageDetails = styled.article`
     width: 100%;
     height: 90vh;
     img {
-      cursor: zoom-in;
       width: 100%;
       height: 100%;
       object-fit: contain;
-      /* box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12); */
     }
   }
   .footer {
-    height: 5vh;
+    min-height: 5vh;
+    h1 {
+      font-family: $header;
+      font-weight: lighter;
+      margin: 0.25rem 0;
+      font-size: 3vh;
+    }
+    .footer__statstics {
+      display: flex;
+      justify-content: flex-start;
+
+      .footer-statistics--statistic {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        margin: 0 0.5rem;
+        h1 {
+          font-size: 2vh;
+        }
+        p {
+          font-family: $paragraph;
+          font-weight: 700;
+        }
+      }
+    }
+    .footer__info {
+      padding: 1rem 0;
+
+      .footer__info--info {
+        display: flex;
+        color: rgba(0, 0, 0, 0.5);
+        font-weight: lighter;
+        transition: all 0.3s ease-in-out;
+        svg {
+          margin-right: 0.25rem;
+        }
+        &:hover {
+          color: black;
+        }
+      }
+    }
+    .footer__tags {
+      margin: 1rem 0;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      button {
+        font-size: 2vh;
+        margin: 0.25rem;
+      }
+    }
   }
 `;

@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
-import { useHanldeSubmit } from '../../context';
 import Spinner from '../Spinner';
-import { StyledImageDetails } from './image-details';
-import { useHistory } from 'react-router-dom';
+import { StyledImageDetails } from './image-details-styles';
 import { FaCamera, FaMapPin } from 'react-icons/fa';
+import DetailTag from './DetailTag';
 
 const getImageDetails = async id => {
   try {
@@ -20,8 +19,6 @@ const getImageDetails = async id => {
 };
 
 const Imagedetails = () => {
-  const updateSearch = useHanldeSubmit();
-  const history = useHistory();
   const { imageId } = useParams();
   const [data, setData] = useState({});
 
@@ -77,30 +74,30 @@ const Imagedetails = () => {
           </div>
           <footer className='footer'>
             <div className='footer__statstics'>
-              <p>Views: {data.views}</p>
-              <p>Downloads: {data.downloads}</p>
+              <div className='footer-statistics--statistic'>
+                <h1>Views: </h1>
+                <p>{data.views}</p>
+              </div>
+              <div className='footer-statistics--statistic'>
+                <h1>Downloads: </h1>
+                <p>{data.downloads}</p>
+              </div>
             </div>
             <br />
             <div className='footer__info'>
-              <FaCamera />
-              <p>Camera: {data.exif.name || 'Unknown'}</p>
-              <FaMapPin />
-              <p>Location: {data.location.title || 'Unknown'}</p>
+              <div className='footer__info--info'>
+                <FaCamera />
+                <p>{data.exif.name || 'Unknown'}</p>
+              </div>
+              <div className='footer__info--info'>
+                <FaMapPin />
+                <p>{data.location.title || 'Unknown'}</p>
+              </div>
             </div>
-            <br />
+            <h1>Related Tags</h1>
             <div className='footer__tags'>
-              Tags
               {data.tags.map(tag => (
-                <button
-                  key={tag.title}
-                  onClick={async e => {
-                    console.log(e);
-                    await updateSearch(e.target.innerHTML, 1);
-                    history.push('/');
-                  }}
-                >
-                  {tag.title}
-                </button>
+                <DetailTag key={tag.title} tag={tag} />
               ))}
             </div>
           </footer>
