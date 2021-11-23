@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import Form from '../Form/Form';
-import Header from '../Header/Header';
-import Images from '../Images-container/Images-container';
+import Form from '../form/Form';
+import Header from '../header/Header';
+import Images from '../images-container/Images-container';
 
 import {
   useHanldeSubmit,
