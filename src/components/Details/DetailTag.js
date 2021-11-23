@@ -1,7 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router';
 import { useHanldeSubmit } from '../../context';
-import { StyledTag } from '../Images-container/images-container-styles';
+import { StyledTag } from '../images-container/images-container-styles';
 
 const DetailTag = ({ tag }) => {
   const updateSearch = useHanldeSubmit();
